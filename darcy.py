@@ -54,9 +54,10 @@ print(bcolors.WARNING + result)
 with mic as source:
     print('ready...')
     rec.adjust_for_ambient_noise(source,duration=1)
-
+    
     audio = rec.listen(source=source)
     try:
+        # make audio to text 
         text = rec.recognize_google(audio)
         print(text)
         # for conversation
@@ -93,19 +94,23 @@ with mic as source:
         #for lock computer
         if ('lock' in text):
             play('./files/very-well-sir.mp3')
+            # lock pc with ctypes package
             ctypes.windll.user32.LockWorkStation()
         # for shot down        
         if 'shut down' in text:
             play('./files/system-is-shutting-down (1).mp3')
-            # os.system("shutdown /s /t 1")
+            #shutdown pc with os system 
+            os.system("shutdown /s /t 1")
         # for browser command
         if 'browser' in text:
             play('./files/very-well-sir.mp3')
+            # run download manger with subProcess package
             subprocess.call(
                 ['C:\Program Files (x86)\Microsoft\Edge\Application\\msedge.exe'])
         # for this PC commend
         if 'PC' in text:
             play('./files/very-well-sir.mp3')
+            # run this pc with subProcess package
             subprocess.run(["explorer", ","])
         # for download manger
         if 'download manager' in text:
