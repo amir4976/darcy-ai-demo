@@ -49,12 +49,13 @@ def play(target):
 result = pyfiglet.figlet_format("darcy", font = "colossal" )
 print(bcolors.WARNING + result)
 
+print ('time and introduce and chat and thanks and browser and download manger... this is just a demo')
 
 #use speech recognition
 with mic as source:
     print('ready...')
     rec.adjust_for_ambient_noise(source,duration=1)
-    
+
     audio = rec.listen(source=source)
     try:
         # make audio to text 
