@@ -91,7 +91,7 @@ with mic as source:
             play('./files/very-well-sir.mp3')
             ctypes.windll.user32.LockWorkStation()
         
-        if 'shut down' = text:
+        if 'shut down' in text:
             play('./files/system-is-shutting-down (1).mp3')
             # os.system("shutdown /s /t 1")
 
