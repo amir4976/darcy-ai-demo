@@ -123,7 +123,8 @@ while i < 1000:
         # and for error handling
         except:
             print('failed')
-
+        finally:
+            i += 1
     
     
-    i += 1
+    
