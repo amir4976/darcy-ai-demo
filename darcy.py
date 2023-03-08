@@ -6,6 +6,21 @@ from gtts import gTTS
 import os
 import ctypes
 import subprocess
+import sys
+import pyfiglet
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 
 h = datetime.datetime.now().hour
 m = datetime.datetime.now().minute
@@ -23,9 +38,14 @@ audioM.save("./files/M.mp3")
 
 rec = SR.Recognizer()
 mic = SR.Microphone()
-print(SR.Microphone.list_microphone_names())
+
 def play(target):
     playsound(target);
+
+
+result = pyfiglet.figlet_format("darcy", font = "colossal" )
+print(bcolors.WARNING + result)
+
 
 
 with mic as source:
@@ -35,15 +55,13 @@ with mic as source:
     audio = rec.listen(source=source)
     try:
         text = rec.recognize_google(audio)
-        
-
         print(text)
-        if text == 'Darcy are you there' or text == 'Darcy dude are you there' or text == 'Darcy body are you there' or text == 'good morning Darcy':
+        if text == 'Darcy are you there' or text == 'Darcy dude are you there' or text == 'Darcy body are you there' or text == 'good morning Darcy' or text == 'hello' or text == 'hello Darcy' or text == 'Darcy':
             print('true')
             play('./files/at-your-service-sir.mp3')
             play('./files/online-and-ready.mp3')
 
-        if text == 'Darcy can you tell me what time is it':
+        if ('time' in text):
             play('./files/yes-sir-time-is.mp3')
             play('./files/example.mp3')
 
@@ -52,7 +70,7 @@ with mic as source:
             play('./files/exampleM.mp3')
             play('./files/clock.mp3')
 
-        if (text == 'Darcey please introduce yourself'):
+        if ('introduce' in text):
             play('./files/yes sir my name is..mp3')
 
         if (text == 'thank you Darcy'):
@@ -69,26 +87,28 @@ with mic as source:
             else:
                 play('./files/access-denied.mp3')
 
-        if text == 'Darcy lock my computer':
+        if ('lock' in text):
             play('./files/very-well-sir.mp3')
             ctypes.windll.user32.LockWorkStation()
         
-        if text == 'Darcy shut down':
+        if 'shut down' = text:
             play('./files/system-is-shutting-down (1).mp3')
             # os.system("shutdown /s /t 1")
 
-        if text == 'Darcy open browser':
+        if 'browser' in text:
             play('./files/very-well-sir.mp3')
             subprocess.call(
                 ['C:\Program Files (x86)\Microsoft\Edge\Application\\msedge.exe'])
 
-        if text == 'Darcy open this PC':
+        if 'this PC' in text:
             play('./files/very-well-sir.mp3')
             subprocess.run(["explorer", ","])
 
-        if text == 'Darcy open download manager':
+        if 'download manager' in text:
             play('./files/very-well-sir.mp3')
             subprocess.call(['C:\Program Files (x86)\Internet Download Manager\\IDMan.exe'])
 
     except:
         print('failed')
+        
+input('press any key')
