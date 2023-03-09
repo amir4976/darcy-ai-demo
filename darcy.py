@@ -9,6 +9,9 @@ import subprocess
 import pyfiglet
 import sys
 import importlib
+import pyautogui
+
+
 i = 0
 while i < 1000:
     
@@ -46,10 +49,13 @@ while i < 1000:
     def play(target):
         playsound(target);
 
+    def num_there(s):
+        return any(i.isdigit() for i in s)
+
 
 
     # make a fancy header
-    result = pyfiglet.figlet_format("darcy", font = "colossal" )
+    result = pyfiglet.figlet_format("DARCY", font = "colossal" )
     print(bcolors.WARNING + result)
 
     print ('time and introduce and chat and thanks and browser and download manger... this is just a demo')
@@ -69,6 +75,7 @@ while i < 1000:
                 print('true')
                 play('./files/at-your-service-sir.mp3')
                 play('./files/online-and-ready.mp3')
+                
             # for get time
             if ('time' in text):
                 play('./files/yes-sir-time-is.mp3')
@@ -120,6 +127,15 @@ while i < 1000:
             if 'download manager' in text:
                 play('./files/very-well-sir.mp3')
                 subprocess.call(['C:\Program Files (x86)\Internet Download Manager\\IDMan.exe'])
+            if num_there(text):
+                play('./files/very-well-sir.mp3')
+                main_text = text
+                Array_Main_Text = list(map(str.strip, text.split(',')))
+                print(Array_Main_Text[1])
+                pyautogui.moveTo(int(Array_Main_Text[0]) , int(Array_Main_Text[1]) , duration=0.5)
+            
+            if 'select' in text:
+                pyautogui.doubleClick()
         # and for error handling
         except:
             print('failed')
