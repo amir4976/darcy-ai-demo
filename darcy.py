@@ -72,7 +72,7 @@ while i < 1000:
             # for get time
             if ('time' in text):
                 play('./files/yes-sir-time-is.mp3')
-                play('./files/h.mp3')
+                play('./files/h.mp3') 
 
                 play('./files/and.mp3')
 
