@@ -140,7 +140,7 @@ while i < 1000:
 
             if 'type' in text :
                 newText = text.replace("type","")
-                pyautogui.write(newText)  
+                pyautogui.write(newText) 
 
         # and for error handling
         except:
