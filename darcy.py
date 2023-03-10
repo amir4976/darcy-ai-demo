@@ -86,7 +86,7 @@ while i < 1000:
                 play('./files/M.mp3')
                 play('./files/clock.mp3')
             # for introduce
-            if ('introduce' in text):
+            if ('introduce' in text or text == 'who are you' or text == 'who is this'):
                 play('./files/yes sir my name is..mp3')
             # for thanks
             if ('thank you' in text):
@@ -136,6 +136,12 @@ while i < 1000:
             
             if 'select' in text:
                 pyautogui.doubleClick()
+
+
+            if 'type' in text :
+                newText = text.replace("type","")
+                pyautogui.write(newText)  
+
         # and for error handling
         except:
             print('failed')
